@@ -5,10 +5,10 @@ namespace SignUpSignInAspNetCore.Tools
 {
     public class DataContext : DbContext
     {
-        public DbSet<User> User { get; set; }
+        public DbSet<User> Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=(LocalDb)\v-app;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Data Source=(LocalDb)\v-app2;Integrated Security=True");
         }
     }
 }
