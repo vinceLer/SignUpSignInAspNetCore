@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SignUpSignInAspNetCore.Interfaces;
+using SignUpSignInAspNetCore.Models;
+using SignUpSignInAspNetCore.Repositories;
+using SignUpSignInAspNetCore.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +26,8 @@ namespace SignUpSignInAspNetCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DataContext>();
+            services.AddScoped<IRepository<User>, UserRepository>();
             services.AddControllersWithViews();
         }
 
@@ -46,7 +52,7 @@ namespace SignUpSignInAspNetCore
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=LoginForm}/{id?}");
             });
         }
     }
