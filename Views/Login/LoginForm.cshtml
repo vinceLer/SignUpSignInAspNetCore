@@ -1,0 +1,34 @@
+﻿
+<section class="mr-auto ml-auto">
+    <h2 class="p-2 text-center">Connect</h2>
+    <div class="d-flex justify-content-center ">
+        <div class="p-3 border-top border-bottom border-dark">
+            <div class="container bg-light p-3 rounded">
+                <h3> Sign Up </h3>
+                <hr />
+                <form asp-controller="Login" asp-action="SubmitSignUpForm" class="form d-flex flex-column">
+                    <label class="border-dark">Username</label><input type="text" name="userName" />
+                    <label>Password</label><input type="password" name="password" minlength="8" />
+                    <label>Confirm password</label><input type="password" name="confirmPassword" minlength="8" />
+                    <button type="submit" class="btn btn-dark mt-2">Sign Up</button>
+                </form>
+                @if (ViewBag.ErrorSignUpUsername != null)
+                {
+                    <div class=" bg-danger p-2 mt-2 rounded text-light">@ViewBag.ErrorSignUpUsername</div>
+                }
+            </div>
+        </div>
+        <div class="p-3 border-top border-bottom border-dark">
+            <div class="container bg-light p-3 rounded">
+
+                <h3> Sign In </h3>
+                <hr />
+                <form asp-controller="Login" asp-action="SubmitSignInForm" class="form d-flex flex-column">
+                    <label>Username</label><input type="text" name="uName" required="required" />
+                    <label>Password</label><input type="password" name="pwd" required="required" />
+                    <button type="submit" class="btn btn-dark mt-2">Sign In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

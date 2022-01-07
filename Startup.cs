@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using SignUpSignInAspNetCore.Interfaces;
 using SignUpSignInAspNetCore.Models;
 using SignUpSignInAspNetCore.Repositories;
+using SignUpSignInAspNetCore.Services;
 using SignUpSignInAspNetCore.Tools;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace SignUpSignInAspNetCore
         {
             services.AddDbContext<DataContext>();
             services.AddScoped<IRepository<User>, UserRepository>();
+            services.AddScoped<LoginService>();
             services.AddControllersWithViews();
         }
 
