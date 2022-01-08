@@ -14,9 +14,10 @@ namespace SignUpSignInAspNetCore.Controllers
             _userRepository = userRepository;
             _loginService = loginService;
         }
-        public IActionResult LoginForm(string ErrorSignUpUsername)
+        public IActionResult LoginForm(string ErrorSignUp, string ErrorSignIn)
         {
-            ViewBag.ErrorSignUpUsername = ErrorSignUpUsername;
+            ViewBag.ErrorSignUp = ErrorSignUp;
+            ViewBag.ErrorSignIn = ErrorSignIn;
             return View();
         }
         public IActionResult SubmitSignUpForm(User user, string confirmPassword)
@@ -31,12 +32,20 @@ namespace SignUpSignInAspNetCore.Controllers
                         return RedirectToAction("Index", "Home");
                     }
                 }
-                return RedirectToAction("LoginForm", "Login", new { ErrorSignUpUsername = "Password and Confirm Password was differents, they should be the same" } );
+                return RedirectToAction("LoginForm", "Login", new { ErrorSignUp = "Password and Confirm Password was differents, they should be the same" } );
             }
             else
             {
-                return RedirectToAction("LoginForm", "Login", new {ErrorSignUpUsername = "Username not available, already used by other" });
+                return RedirectToAction("LoginForm", "Login", new {ErrorSignUp = "Username not available, already used by other" });
             }
+        }
+        public IActionResult SubmitSignInForm(string uName, string pwd)
+        {
+            if (_loginService.Login(uName, pwd))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return RedirectToAction("LoginForm", new { ErrorSignIn = "Username or password not valid" });
         }
     }
 }
