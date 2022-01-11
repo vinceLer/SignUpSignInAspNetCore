@@ -3,9 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SignUpSignInAspNetCore.Interfaces;
-using SignUpSignInAspNetCore.Models;
-using SignUpSignInAspNetCore.Repositories;
 using SignUpSignInAspNetCore.Services;
 using SignUpSignInAspNetCore.Tools;
 using System;
@@ -27,9 +24,7 @@ namespace SignUpSignInAspNetCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>();
-            services.AddScoped<IRepository<User>, UserRepository>();
-            services.AddScoped<LoginService>();
+            services.AddOurServices();
             services.AddControllersWithViews();
         }
 

@@ -12,9 +12,9 @@
                     <label>Confirm password</label><input type="password" name="confirmPassword" minlength="8" />
                     <button type="submit" class="btn btn-dark mt-2">Sign Up</button>
                 </form>
-                @if (ViewBag.ErrorSignUpUsername != null)
+                @if (ViewBag.ErrorSignUp != null)
                 {
-                    <div class=" bg-danger p-2 mt-2 rounded text-light">@ViewBag.ErrorSignUpUsername</div>
+                    <div class=" bg-danger p-2 mt-2 rounded text-light">@ViewBag.ErrorSignUp</div>
                 }
             </div>
         </div>
