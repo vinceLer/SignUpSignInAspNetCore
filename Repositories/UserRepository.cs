@@ -19,7 +19,7 @@ namespace SignUpSignInAspNetCore.Repositories
             return _dataContext.Users.ToList();
         }
 
-        public User GetT(int id)
+        public User GetById(int id)
         {
             return _dataContext.Users.Find(id);
         }

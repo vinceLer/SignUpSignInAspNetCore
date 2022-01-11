@@ -6,7 +6,7 @@ namespace SignUpSignInAspNetCore.Interfaces
 {
     public interface IRepository<T>
     {
-        T GetT(int id);
+        T GetById(int id);
         List<T> GetAll();
         bool Save(T entity);
         List<T> Search(Expression<Func<T, bool>> searchMethod);

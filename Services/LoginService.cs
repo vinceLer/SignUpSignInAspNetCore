@@ -31,6 +31,7 @@ namespace SignUpSignInAspNetCore.Services
             if (u != null)
             {
                 _accessor.HttpContext.Session.SetString("isLogged", "true");
+                _accessor.HttpContext.Session.SetString("username", uname);
                 return true;
             }
             return false;
@@ -45,6 +46,11 @@ namespace SignUpSignInAspNetCore.Services
                 }
             }
             return false;
+        }
+        public string GetUser()
+        {
+            string findUser =_accessor.HttpContext.Session.GetString("username");
+            return findUser;
         }
     }
 }

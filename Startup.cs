@@ -30,8 +30,8 @@ namespace SignUpSignInAspNetCore
             services.AddHttpContextAccessor();
             services.AddSession(options => {
                 // Expiration Session
-                // options.IdleTimeout = TimeSpan.FromSeconds(10);
-                options.IdleTimeout = TimeSpan.FromMinutes(5);
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                // options.IdleTimeout = TimeSpan.FromMinutes(5);
             });
         }
 
