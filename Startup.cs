@@ -26,6 +26,13 @@ namespace SignUpSignInAspNetCore
         {
             services.AddOurServices();
             services.AddControllersWithViews();
+            
+            services.AddHttpContextAccessor();
+            services.AddSession(options => {
+                // Expiration Session
+                // options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.IdleTimeout = TimeSpan.FromMinutes(5);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +51,7 @@ namespace SignUpSignInAspNetCore
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

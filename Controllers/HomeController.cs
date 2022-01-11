@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SignUpSignInAspNetCore.Models;
+using SignUpSignInAspNetCore.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,27 +13,29 @@ namespace SignUpSignInAspNetCore.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        LoginService _loginService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(LoginService loginService)
         {
-            _logger = logger;
+            _loginService = loginService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            if (_loginService.IsLogged())
+            {
+                return View();
+            }
+            return RedirectToAction("LoginForm", "User");
         }
 
         public IActionResult Privacy()
         {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (_loginService.IsLogged())
+            {
+                return View();
+            }
+            return RedirectToAction("LoginForm", "User");
         }
     }
 }
