@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject LoginService _loginService
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -27,6 +28,12 @@
                     </ul>
                 </div>
             </div>
+            @if (_loginService.IsLogged())
+            {
+                <div class="nav-item">
+                    <a class="nav-link text-dark" asp-controller="Login" asp-action="QuitSession">Logout</a>
+                </div>
+            }
         </nav>
     </header>
     <div class="container">

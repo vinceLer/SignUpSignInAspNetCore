@@ -52,5 +52,12 @@ namespace SignUpSignInAspNetCore.Services
             string findUser =_accessor.HttpContext.Session.GetString("username");
             return findUser;
         }
+        public bool Logout()
+        {
+            _accessor.HttpContext.Session.Clear();
+            if (_accessor.HttpContext == null) {
+                return true;
+            } else return false;
+        }
     }
 }
